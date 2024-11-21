@@ -1,93 +1,83 @@
-# Programowanie Aplikacyjne (PAP) - 21Z - Zespół 7
+# Requirements and assumptions of the project
 
-# Członkowie zespołu
+### The task is to write a system to operate a restaurant.
 
-- ### **Adam Sudoł**
-- ### **Bartłomiej Krawczyk**
-- ### **Kamil Sulkowski**
-- ### **Karol Rogoziński**
+We plan to create the project in a client-server architecture. We will have one main server that will communicate with the database and mobile and desktop applications communicating with the server.
 
-# Wymagania i założenia projektu
+### As part of the project we will create:
 
-### Zadanie polega na napisaniu systemu do obsługi restauracji.
+## Desktop application
 
-Planujemy projekt stworzyć w architekturze klient-serwer. Będziemy mieli jeden główny serwer, który będzie komunikował się z bazą danych oraz aplikacje mobilne i desktopowe komunikujące się z serwerem.
+A desktop application for cooks written in Java with a graphical interface written using Swing or JavaFX library.
 
-### W ramach projektu stworzymy:
+### Functionality:
 
-## Aplikacja desktopowa
+- for cooks
 
-Aplikacja desktopowa dla kucharzy napisana w języku Java z interfejsem graficznym napisanym przy użyciu biblioteki Swing lub JavaFX
+- display of pending orders
+- ability to assign oneself to the execution of a dish
+- ability to edit the status of a dish
+- display of information about dishes (ingredients, recipe, category, etc.)
+- editing the amount of ingredients in stock after an order has been made (we can potentially do this automatically at the database level)
+- ability to display orders assigned to a particular cook
+- logging in as a cook
+- several cooks can be on the same device at the same time (we do not require each cook to have his own computer)
+- initially only selection from the list of cooks, and if there is enough time => implementation of full login with password (probably auth0)
+- display of dishes to be prepared by cooks in several windows / split window
+- or
+- ability to quickly switch logged-in users
 
-### Funkcjonalność:
+## Mobile application
 
-- dla kucharzy
+Mobile application for waiters written in Java for Android phones.
 
-  - wyświetlanie oczekujących zamówień
-  - możliwość przypisania siebie do wykonania dania
-  - możliwość edycji statusu dania
-  - wyświetlanie informacji o daniach (składniki, przepis, kategoria itp.)
-  - edycja ilości składników na składzie po wykonanym zamówieniu (potencjalnie możemy to wykonać automatycznie na poziomie bazy danych)
-  - możliwość wyświetlenia zamówień przypisanych do danego kucharza
-  - logowanie jako kucharz
-    - na jednym urządzeniu w tym samym czasie może być kilku kucharzy (nie wymagamy, aby każdy kucharz miał swój komputer)
-    - początkowo jedynie wybór z listy kucharzy, a jeśli starczy czasu => implementacja pełnego logowania z hasłem (pewnie auth0)
-    - wyświetlanie dań do przygotowania przez kucharzy w kilku oknach / podzielonym oknie
-      - lub
-    - możliwość szybkiego przełączania zalogowanych użytkowników
+### Functionality:
 
-## Aplikacja mobilna
-
-Aplikacja mobilna dla kelnerów napisana w języku Java na telefony Android.
-
-### Funkcjonalność:
-
-- dla kelnerów
-  - dodawanie nowego rachunku
-  - przeglądanie kategorii dań
-  - przeglądanie dostępnych dań w ramach kategorii
-  - składanie zamówień na dania w ramach danego rachunku
-  - logowanie jako kelner
-    - początkowo jedynie wybór z listy kelnerów, a jeśli starczy czasu => implementacja pełnego logowania z hasłem (pewnie auth0)
-    - na jednym urządzeniu może być zalogowany tylko jeden użytkownik (zakładamy, że każdy kelner ma swój telefon)
-  - wyświetlanie otwartego rachunku przypisanego do danego kelnera
-  - zamknięcie rachunku - wyświetlenie sumy do zapłaty
+- for waiters
+- adding a new bill
+- browsing through dish categories
+- viewing available dishes within a category
+- placing orders for dishes within a given account
+- logging in as a waiter
+- initially only selection from the list of waiters, and if there is enough time => implementation of full login with password (probably auth0)
+- only one user can be logged in on one device (we assume that each waiter has his own phone)
+- display of an open account assigned to a given waiter
+- closing the account - displaying the amount to be paid
 
 ## Api
 
-Serwer napisany w języku Java przy wykorzystaniu framework Spring Boot.
+Server written in Java using Spring Boot framework.
 
-### Funkcjonalność:
+### Functionality:
 
-- ma służyć jako pośrednik między aplikacjami wykorzystywanymi przez pracowników, a bazą danych
-- głównym zadaniem jest mapowanie obiektów z relacyjnej bazy danych na javowe obiekty i na odwrót
+- is to serve as an intermediary between applications used by employees and the database
+- main task is to map objects from relational database to java objects and vice versa
 
-## Baza danych
+## Database
 
-Centralna baza danych Oracle
+Oracle central database
 
-### Wstępny projekt bazy danych i relacji:
+### Initial database and relationship design:
+![Relational model](./diagrams/relational_model_draft.png)
 
-![Model relacyjny](./diagrams/relational_model_draft.png)
+## Optional functionalities that we plan to introduce, only after the critical functionalities are in place:
 
-## Funkcjonalności opcjonalne, które planujemy wprowadzić, dopiero po wprowadzeniu funkcjonalności krytycznych:
+(These functionalities can be replaced by direct access of these people to the database)
 
-(Funkcjonalności te można zastąpić bezpośrednim dostępem tych osób do bazy danych)
+## Desktop application
 
-## Aplikacja desktopowa
+Desktop application for procurement and admin written in Java with a graphical interface written using Swing or JavaFX library
 
-Aplikacja desktopowa dla zaopatrzycieli i adminów napisana w języku Java z interfejsem graficznym napisanym przy użyciu biblioteki Swing lub JavaFX
+- for inventory
 
-- do inwentarzu
+- display of inventory data
+- displaying what is in short supply
+- updating the number of components when supplies arrive
 
-  - wyświetlanie danych o zaopatrzeniu
-  - wyświetlanie czego jest mało
-  - aktualizacja ilości składników, gdy dotrze zaopatrzenie
+- for admin
 
-- dla admina
-
-  - crud składniki / produkty
-  - crud dania
-  - crud pracownicy
-  - crud stoliki
-  - crud kategorie
+- crud ingredients / products
+- crud dishes
+- crud employees
+- crud tables
+- crud categories
